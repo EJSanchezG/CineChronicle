@@ -78,21 +78,21 @@ export const languages = [
     code: 'es-PE',
     name: 'PE',
     fullName: 'Español Latino (Perú)',
-    flag: './flags/peru.svg',
+    flag: 'flags/peru.svg',
     ariaLabel: 'Español Latino (Perú)'
   },
   {
     code: 'es-ES',
     name: 'ES',
     fullName: 'Español (España)',
-    flag: './flags/spain.svg',
+    flag: 'flags/spain.svg',
     ariaLabel: 'Español de España'
   },
   {
     code: 'en-US',
     name: 'EN',
     fullName: 'English (US)',
-    flag: './flags/usa.svg',
+    flag: 'flags/usa.svg',
     ariaLabel: 'English (United States)'
   }
 ];
