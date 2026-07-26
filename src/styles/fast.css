@@ -1,0 +1,121 @@
+/* Fast & Furious Section Styling */
+
+.fast-section {
+  position: relative;
+  width: 100%;
+  padding: 5rem 1.5rem 4rem 1.5rem;
+  background: radial-gradient(circle at 50% 20%, rgba(220, 38, 38, 0.15) 0%, rgba(7, 10, 18, 0.98) 70%, var(--bg-main) 100%);
+  border-top: 1px solid rgba(220, 38, 38, 0.25);
+}
+
+.fast-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* Header & Origin Information Card */
+.fast-header-card {
+  background: rgba(18, 24, 38, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(220, 38, 38, 0.35);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(220, 38, 38, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.fast-header-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, #DC2626 0%, #F59E0B 100%);
+}
+
+.fast-badge-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.fast-logo-badge {
+  background: linear-gradient(135deg, #DC2626 0%, #B91C1C 100%);
+  color: #FFFFFF;
+  font-family: var(--font-body);
+  font-weight: 900;
+  padding: 0.2rem 0.6rem;
+  letter-spacing: 1.5px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.4);
+}
+
+.fast-header-card h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  color: var(--text-main);
+}
+
+.fast-description {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.fast-origin-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  background: rgba(7, 10, 18, 0.6);
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-glass);
+}
+
+@media (min-width: 640px) {
+  .fast-origin-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.fast-timeline-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 900px) {
+  .fast-timeline-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Fast Card Specific Styles */
+.fast-card:hover {
+  border-color: rgba(220, 38, 38, 0.6);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 18px rgba(220, 38, 38, 0.25);
+}
+
+.fast-badge {
+  background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.5);
+}
+
+.fast-placeholder {
+  background: linear-gradient(145deg, #1f1924 0%, #0f121a 100%);
+}
+
+.fast-logo-tag {
+  background: #DC2626;
+}

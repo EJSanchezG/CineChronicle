@@ -1,0 +1,41 @@
+:root {
+  /* Color Palette - Cinema Luxury & Cyber Dark Mode */
+  --bg-main: #070a12;
+  --bg-card: rgba(18, 24, 38, 0.75);
+  --bg-glass: rgba(15, 23, 42, 0.65);
+  --bg-glass-hover: rgba(30, 41, 59, 0.85);
+
+  --accent-primary: #e50914; /* Cinema Red */
+  --accent-gold: #f5c518;    /* IMDb / Cinematic Gold */
+  --accent-cyan: #00f2fe;    /* Futuristic Cyan */
+  --accent-glow: rgba(245, 197, 24, 0.25);
+
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+
+  --border-glass: rgba(255, 255, 255, 0.12);
+  --border-glow: rgba(245, 197, 24, 0.4);
+
+  /* Typography */
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Layout Standards */
+  --navbar-height-desktop: 72px;
+  --bottom-dock-height-mobile: 68px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --radius-pill: 9999px;
+
+  /* Transitions & Shadows */
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --shadow-glass: 0 12px 32px 0 rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 25px rgba(245, 197, 24, 0.2);
+
+  /* Hero Background Default Configuration */
+  --hero-bg-overlay: radial-gradient(circle at 50% 30%, rgba(229, 9, 20, 0.15) 0%, rgba(7, 10, 18, 0.85) 60%, var(--bg-main) 100%);
+  --hero-bg-image: url('/img/cine.avif');
+}

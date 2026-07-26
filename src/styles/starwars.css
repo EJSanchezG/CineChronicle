@@ -1,0 +1,126 @@
+/* Star Wars Section Styling */
+
+.starwars-section {
+  position: relative;
+  width: 100%;
+  padding: 5rem 1.5rem 4rem 1.5rem;
+  background: radial-gradient(circle at 50% 20%, rgba(245, 158, 11, 0.15) 0%, rgba(7, 10, 18, 0.98) 70%, var(--bg-main) 100%);
+  border-top: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+.starwars-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* Header & Origin Information Card */
+.starwars-header-card {
+  background: rgba(18, 24, 38, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(245, 158, 11, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.starwars-header-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, #F59E0B 0%, #3B82F6 100%);
+}
+
+.starwars-badge-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.starwars-logo-badge {
+  background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+  color: #070A12;
+  font-family: var(--font-body);
+  font-weight: 900;
+  padding: 0.2rem 0.6rem;
+  letter-spacing: 1.5px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
+}
+
+.starwars-header-card h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  color: var(--text-main);
+}
+
+.starwars-description {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.starwars-origin-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  background: rgba(7, 10, 18, 0.6);
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-glass);
+}
+
+@media (min-width: 640px) {
+  .starwars-origin-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.starwars-timeline-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 900px) {
+  .starwars-timeline-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Star Wars Card Specific Styles */
+.starwars-card:hover {
+  border-color: rgba(245, 158, 11, 0.6);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 18px rgba(245, 158, 11, 0.25);
+}
+
+.starwars-badge {
+  background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+  color: #070A12;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.5);
+}
+
+.starwars-placeholder {
+  background: linear-gradient(145deg, #241d14 0%, #0d121c 100%);
+}
+
+.starwars-logo-tag {
+  background: #F59E0B;
+  color: #070A12;
+}
+
+.starwars-type-tag {
+  border-color: rgba(245, 158, 11, 0.4);
+}

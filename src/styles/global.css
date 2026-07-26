@@ -1,0 +1,249 @@
+@import './variables.css';
+@import './navbar.css';
+@import './hero.css';
+@import './language-selector.css';
+@import './marvel.css';
+@import './fast.css';
+@import './starwars.css';
+@import './conjuring.css';
+@import './monsters.css';
+@import './indiana.css';
+@import './insidious.css';
+@import './alien.css';
+@import './predator.css';
+@import './terminator.css';
+@import './avp.css';
+@import './lotr.css';
+@import './potter.css';
+@import './saw.css';
+@import './xmen.css';
+
+/* CSS Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-body);
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  background-color: var(--bg-main);
+}
+
+.app-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* W3C HTML5 Landmarks */
+header.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+main {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-view {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  animation: pageCinematicFade 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+footer.main-footer {
+  width: 100%;
+  padding: 1.25rem 1.5rem;
+  background: rgba(7, 10, 18, 0.95);
+  border-top: 1px solid var(--border-glass);
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  z-index: 10;
+}
+
+/* Mobile, Tablet & Medium Laptop (< 1230px): Footer sits cleanly ABOVE fixed bottom navbar */
+@media (max-width: 1229px) {
+  footer.main-footer {
+    margin-bottom: 60px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .app-root.is-home-route {
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .app-root.is-home-route main {
+    justify-content: center;
+  }
+}
+
+/* Universal Centered Timeline Header & Filter Controls */
+.timeline-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+}
+
+.timeline-header h3 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 2.5vw, 2.1rem);
+  color: var(--text-main);
+  text-align: center;
+}
+
+.timeline-header p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  max-width: 650px;
+  text-align: center;
+}
+
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+.filter-btn {
+  padding: 0.45rem 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-pill);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+  transition: var(--transition-smooth);
+}
+
+.filter-btn:hover {
+  color: var(--text-main);
+  border-color: var(--border-glow);
+}
+
+.filter-btn.active {
+  background: var(--accent-gold);
+  color: var(--bg-main);
+  border-color: var(--accent-gold);
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(245, 197, 24, 0.3);
+}
+
+@keyframes pageCinematicFade {
+  0% {
+    opacity: 0.3;
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Keyframe Animations for Smooth Reveal */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cinematicSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.billboard-card {
+  opacity: 0;
+  animation: cinematicSlideIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Staggered Cascade Film-Reel Entry */
+.billboard-card:nth-child(1) { animation-delay: 20ms; }
+.billboard-card:nth-child(2) { animation-delay: 50ms; }
+.billboard-card:nth-child(3) { animation-delay: 80ms; }
+.billboard-card:nth-child(4) { animation-delay: 110ms; }
+.billboard-card:nth-child(5) { animation-delay: 140ms; }
+.billboard-card:nth-child(6) { animation-delay: 170ms; }
+.billboard-card:nth-child(7) { animation-delay: 200ms; }
+.billboard-card:nth-child(8) { animation-delay: 230ms; }
+.billboard-card:nth-child(9) { animation-delay: 260ms; }
+.billboard-card:nth-child(10) { animation-delay: 290ms; }
+.billboard-card:nth-child(11) { animation-delay: 320ms; }
+.billboard-card:nth-child(12) { animation-delay: 350ms; }
+.billboard-card:nth-child(13) { animation-delay: 380ms; }
+.billboard-card:nth-child(14) { animation-delay: 410ms; }
+.billboard-card:nth-child(15) { animation-delay: 440ms; }
+.billboard-card:nth-child(16) { animation-delay: 470ms; }
+.billboard-card:nth-child(17) { animation-delay: 500ms; }
+.billboard-card:nth-child(18) { animation-delay: 530ms; }
+.billboard-card:nth-child(19) { animation-delay: 560ms; }
+.billboard-card:nth-child(20) { animation-delay: 590ms; }
+.billboard-card:nth-child(n+21) { animation-delay: 620ms; }
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(245, 197, 24, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(245, 197, 24, 0.4);
+  }
+}
+
+.animate-fade-in {
+  animation: pageCinematicFade 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Focus & Touch Targets Accessibility */
+button, a {
+  font-family: inherit;
+  color: inherit;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline-offset: 4px;
+}
+
+button:focus-visible, a:focus-visible {
+  outline: 2px solid var(--accent-gold);
+}

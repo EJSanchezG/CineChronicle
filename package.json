@@ -1,0 +1,21 @@
+{
+  "name": "cinechronicle",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
+  "dependencies": {
+    "astro": "7.1.3"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0",
+    "sharp": "^0.35.3"
+  }
+}

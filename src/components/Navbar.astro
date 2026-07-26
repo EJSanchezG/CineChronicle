@@ -1,0 +1,108 @@
+---
+import '../styles/navbar.css';
+import { categoriesConfig } from '../data/categoriesData';
+import LanguageSelector from './LanguageSelector.astro';
+import MobileCategoryDrawer from './MobileCategoryDrawer.astro';
+---
+
+<header class="site-header" x-data="{ activeDropdown: null }" @click.outside="activeDropdown = null">
+  <nav class="desktop-nav" aria-label="Navegación principal">
+    <a 
+      href="#inicio" 
+      class="brand-logo"
+      @click.prevent="navigateTo('#inicio')"
+    >
+      <i class="fa-solid fa-film"></i>
+      <span>Cine<span class="gold-text">Chronicle</span></span>
+    </a>
+
+    
+    <ul class="nav-menu">
+      <li>
+        <a
+          href="#inicio"
+          class="nav-link"
+          :class="currentRoute === '#inicio' ? 'active' : ''"
+          @click.prevent="navigateTo('#inicio')"
+        >
+          <i class="fa-solid fa-house"></i>
+          <span x-text="t('navHome')">Inicio</span>
+        </a>
+      </li>
+
+      {categoriesConfig.map((cat) => (
+        <li 
+          class="nav-dropdown-item"
+          :class={`(activeDropdown === '${cat.id}') ? 'open' : ''`}
+          @mouseenter={`activeDropdown = '${cat.id}'`}
+          @mouseleave="activeDropdown = null"
+        >
+          <button 
+            type="button"
+            class="nav-dropdown-btn"
+            @click={`activeDropdown = (activeDropdown === '${cat.id}' ? null : '${cat.id}')`}
+          >
+            <i class={cat.icon}></i>
+            <span x-text={`getCatTitle('${cat.id}')`}>{cat.titles['es-PE']}</span>
+            <i class="fa-solid fa-chevron-down nav-chevron"></i>
+          </button>
+
+          
+          <div class="dropdown-menu" :class={`activeDropdown === '${cat.id}' ? 'show' : ''`}>
+            {cat.sagas.map((saga) => (
+              <a
+                href={saga.route}
+                class="dropdown-link"
+                :class={`currentRoute === '${saga.route}' ? 'active' : ''`}
+                @click.prevent={`navigateTo('${saga.route}'); activeDropdown = null;`}
+              >
+                <div class="dropdown-link-left">
+                  <i class={saga.icon}></i>
+                  <span x-text={`getSagaTitle('${cat.id}', '${saga.id}')`}>{saga.titles['es-PE']}</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </li>
+      ))}
+    </ul>
+
+    <div class="nav-actions">
+      <LanguageSelector />
+    </div>
+  </nav>
+</header>
+
+
+<nav class="bottom-nav" aria-label="Navegación móvil">
+  <a
+    href="#inicio"
+    class="nav-link"
+    :class="currentRoute === '#inicio' ? 'active' : ''"
+    @click.prevent="navigateTo('#inicio')"
+    :title="t('navHome')"
+    :aria-label="t('navHome')"
+  >
+    <i class="fa-solid fa-house"></i>
+    <span class="nav-text" x-text="t('navHome')">Inicio</span>
+  </a>
+
+  <button
+    type="button"
+    class="nav-link"
+    :class="isDrawerOpen ? 'active' : ''"
+    @click="isDrawerOpen = true"
+    :title="t('navCategories')"
+    :aria-label="t('navCategories')"
+  >
+    <i class="fa-solid fa-layer-group"></i>
+    <span class="nav-text" x-text="t('navCategories')">Categorías</span>
+  </button>
+
+  <div class="mobile-lang-wrapper">
+    <LanguageSelector />
+  </div>
+</nav>
+
+
+<MobileCategoryDrawer />

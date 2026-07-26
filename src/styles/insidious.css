@@ -1,0 +1,123 @@
+/* Insidious Section Styling */
+
+.insidious-section {
+  position: relative;
+  width: 100%;
+  padding: 5rem 1.5rem 4rem 1.5rem;
+  background: radial-gradient(circle at 50% 20%, rgba(220, 38, 38, 0.15) 0%, rgba(7, 10, 18, 0.98) 70%, var(--bg-main) 100%);
+  border-top: 1px solid rgba(220, 38, 38, 0.25);
+}
+
+.insidious-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* Header & Origin Information Card */
+.insidious-header-card {
+  background: rgba(18, 24, 38, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(220, 38, 38, 0.35);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(220, 38, 38, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.insidious-header-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, #DC2626 0%, #7F1D1D 100%);
+}
+
+.insidious-badge-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.insidious-logo-badge {
+  background: linear-gradient(135deg, #DC2626 0%, #991B1B 100%);
+  color: #FFFFFF;
+  font-family: var(--font-body);
+  font-weight: 900;
+  padding: 0.2rem 0.6rem;
+  letter-spacing: 1.5px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.4);
+}
+
+.insidious-header-card h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  color: var(--text-main);
+}
+
+.insidious-description {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.insidious-origin-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  background: rgba(7, 10, 18, 0.6);
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-glass);
+}
+
+@media (min-width: 640px) {
+  .insidious-origin-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.insidious-timeline-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 900px) {
+  .insidious-timeline-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Insidious Card Specific Styles */
+.insidious-card:hover {
+  border-color: rgba(220, 38, 38, 0.6);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 18px rgba(220, 38, 38, 0.25);
+}
+
+.insidious-badge {
+  background: linear-gradient(135deg, #DC2626 0%, #991B1B 100%);
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.5);
+}
+
+.insidious-placeholder {
+  background: linear-gradient(145deg, #241214 0%, #0d0608 100%);
+}
+
+.insidious-logo-tag {
+  background: #DC2626;
+  color: #FFFFFF;
+  font-weight: 800;
+}

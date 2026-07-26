@@ -1,0 +1,65 @@
+---
+import { categoriesConfig } from '../data/categoriesData';
+---
+
+<div 
+  class="drawer-overlay" 
+  x-show="isDrawerOpen" 
+  @click="isDrawerOpen = false" 
+  x-transition.opacity 
+  style="display: none;"
+>
+  <div 
+    class="drawer-container" 
+    @click.stop
+    x-data="{ activeCategory: null }"
+  >
+    <div class="drawer-header">
+      <div class="drawer-title-group">
+        <i class="fa-solid fa-layer-group drawer-icon"></i>
+        <h4 x-text="t('drawerTitle')">Explorar Categorías & Sagas</h4>
+      </div>
+      <button type="button" class="drawer-close-btn" @click="isDrawerOpen = false" aria-label="Cerrar">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <p class="drawer-subtitle" x-text="t('selectSaga')">Selecciona una saga para ver su línea de tiempo</p>
+
+    <div class="drawer-body">
+      {categoriesConfig.map((cat) => (
+        <div class="drawer-cat-accordion">
+          <button
+            type="button"
+            class="drawer-cat-btn"
+            :class={`activeCategory === '${cat.id}' ? 'expanded' : ''`}
+            @click={`activeCategory = (activeCategory === '${cat.id}' ? null : '${cat.id}')`}
+          >
+            <div class="drawer-cat-title">
+              <i class={`${cat.icon} cat-icon`}></i>
+              <span x-text={`getCatTitle('${cat.id}')`}>{cat.titles['es-PE']}</span>
+            </div>
+            <i class="fa-solid chevron-icon" :class={`activeCategory === '${cat.id}' ? 'fa-chevron-up' : 'fa-chevron-down'`}></i>
+          </button>
+
+          <div class="drawer-saga-list" x-show={`activeCategory === '${cat.id}'`} x-transition>
+            {cat.sagas.map((saga) => (
+              <button
+                type="button"
+                class={`drawer-saga-btn`}
+                :class={`currentRoute === '${saga.route}' ? 'active' : ''`}
+                @click={`navigateTo('${saga.route}'); isDrawerOpen = false; activeCategory = null;`}
+              >
+                <div class="drawer-saga-info">
+                  <i class={`${saga.icon} saga-icon`}></i>
+                  <span x-text={`getSagaTitle('${cat.id}', '${saga.id}')`}>{saga.titles['es-PE']}</span>
+                </div>
+                <i class="fa-solid fa-arrow-right arrow-icon"></i>
+              </button>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>

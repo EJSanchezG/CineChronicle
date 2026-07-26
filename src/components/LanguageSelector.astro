@@ -1,0 +1,34 @@
+---
+import '../styles/language-selector.css';
+import { languages } from '../context/translations';
+---
+
+<div class="lang-selector-container" x-data="{ isOpen: false }" @click.outside="isOpen = false">
+  <button 
+    type="button"
+    class="lang-toggle-btn"
+    @click="isOpen = !isOpen"
+    :aria-expanded="isOpen"
+    :title="getLangObj().fullName"
+  >
+    <img loading="lazy" decoding="async" :src="getLangObj().flag" :alt="getLangObj().ariaLabel" width="24" height="16" class="flag-icon" />
+    <span class="lang-code-text" x-text="getLangObj().name">PE</span>
+    <i class="fa-solid fa-chevron-down chevron-icon"></i>
+  </button>
+
+  <div class="lang-dropdown-menu" role="menu" x-show="isOpen" x-transition.opacity style="display: none;">
+    {languages.map((lang) => (
+      <button
+        type="button"
+        class="lang-option-btn"
+        :class={`currentLang === '${lang.code}' ? 'active' : ''`}
+        @click={`setLang('${lang.code}'); isOpen = false;`}
+        role="menuitem"
+        title={lang.fullName}
+      >
+        <img loading="lazy" decoding="async" src={lang.flag} alt={lang.ariaLabel} width="24" height="16" class="flag-icon" />
+        <span class="lang-code-text">{lang.name}</span>
+      </button>
+    ))}
+  </div>
+</div>

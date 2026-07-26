@@ -1,0 +1,206 @@
+---
+import '../styles/variables.css';
+import '../styles/global.css';
+import '../styles/navbar.css';
+import '../styles/hero.css';
+import '../styles/language-selector.css';
+
+// Import saga CSS files
+import '../styles/marvel.css';
+import '../styles/fast.css';
+import '../styles/starwars.css';
+import '../styles/conjuring.css';
+import '../styles/monsters.css';
+import '../styles/indiana.css';
+import '../styles/insidious.css';
+import '../styles/alien.css';
+import '../styles/predator.css';
+import '../styles/terminator.css';
+import '../styles/avp.css';
+import '../styles/lotr.css';
+import '../styles/potter.css';
+import '../styles/saw.css';
+import '../styles/xmen.css';
+
+// Import all data dictionaries to pass into client state
+import { translations, languages } from '../context/translations';
+import { categoriesConfig } from '../data/categoriesData';
+
+import { marvelHistory, marvelTimeline } from '../data/marvelData';
+import { fastHistory, fastTimeline } from '../data/fastData';
+import { starwarsHistory, starwarsTimeline } from '../data/starwarsData';
+import { conjuringHistory, conjuringTimeline } from '../data/conjuringData';
+import { monstersHistory, monstersTimeline } from '../data/monstersData';
+import { indianaHistory, indianaTimeline } from '../data/indianaData';
+import { insidiousHistory, insidiousTimeline } from '../data/insidiousData';
+import { alienHistory, alienTimeline } from '../data/alienData';
+import { predatorHistory, predatorTimeline } from '../data/predatorData';
+import { terminatorHistory, terminatorTimeline } from '../data/terminatorData';
+import { avpHistory, avpTimeline } from '../data/avpData';
+import { lotrHistory, lotrTimeline } from '../data/lotrData';
+import { potterHistory, potterTimeline } from '../data/potterData';
+import { sawHistory, sawTimeline } from '../data/sawData';
+import { xmenHistory, xmenTimeline } from '../data/xmenData';
+
+const historiesMap = {
+  marvels: marvelHistory,
+  'rapidos-y-furiosos': fastHistory,
+  'star-wars': starwarsHistory,
+  'el-conjuro': conjuringHistory,
+  'monsters-inc': monstersHistory,
+  'indiana-jones': indianaHistory,
+  insidious: insidiousHistory,
+  alien: alienHistory,
+  predator: predatorHistory,
+  terminator: terminatorHistory,
+  'alien-vs-predator': avpHistory,
+  lotr: lotrHistory,
+  'harry-potter': potterHistory,
+  saw: sawHistory,
+  xmen: xmenHistory,
+};
+
+const timelinesMap = {
+  marvels: marvelTimeline,
+  'rapidos-y-furiosos': fastTimeline,
+  'star-wars': starwarsTimeline,
+  'el-conjuro': conjuringTimeline,
+  'monsters-inc': monstersTimeline,
+  'indiana-jones': indianaTimeline,
+  insidious: insidiousTimeline,
+  alien: alienTimeline,
+  predator: predatorTimeline,
+  terminator: terminatorTimeline,
+  'alien-vs-predator': avpTimeline,
+  lotr: lotrTimeline,
+  'harry-potter': potterTimeline,
+  saw: sawTimeline,
+  xmen: xmenTimeline,
+};
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = 'CineChronicle - Orden Cronológico de Películas', 
+  description = 'Descubre la cronología oficial y perfecta de tus sagas de cine favoritas: Marvel, Star Wars, Rápidos y Furiosos, El Conjuro y más.' 
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/flags/peru.svg" />
+    <title>{title}</title>
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
+    <script is:inline define:vars={{ translations, languages, categoriesConfig, historiesMap, timelinesMap }}>
+      window.APP_TRANSLATIONS = translations;
+      window.APP_LANGUAGES = languages;
+      window.APP_CATEGORIES = categoriesConfig;
+      window.APP_HISTORIES = historiesMap;
+      window.APP_TIMELINES = timelinesMap;
+
+      document.addEventListener('alpine:init', () => {
+        Alpine.data('appState', () => ({
+          currentLang: localStorage.getItem('cinechronicle_lang') || 'es-PE',
+          currentRoute: window.location.hash || '#inicio',
+          isDrawerOpen: false,
+
+          init() {
+            window.addEventListener('hashchange', () => {
+              this.currentRoute = window.location.hash || '#inicio';
+              window.scrollTo(0, 0);
+            });
+          },
+
+          setLang(code) {
+            this.currentLang = code;
+            localStorage.setItem('cinechronicle_lang', code);
+          },
+
+          navigateTo(route) {
+            this.currentRoute = route;
+            window.location.hash = route;
+            window.scrollTo(0, 0);
+          },
+
+          getLangObj() {
+            return window.APP_LANGUAGES.find(l => l.code === this.currentLang) || window.APP_LANGUAGES[0];
+          },
+
+          t(key) {
+            const langDict = window.APP_TRANSLATIONS[this.currentLang] || window.APP_TRANSLATIONS['es-PE'];
+            return langDict[key] || key;
+          },
+
+          getCatTitle(catId) {
+            const cat = window.APP_CATEGORIES.find(c => c.id === catId);
+            if (!cat) return '';
+            return cat.titles[this.currentLang] || cat.titles['es-PE'];
+          },
+
+          getSagaTitle(catId, sagaId) {
+            const cat = window.APP_CATEGORIES.find(c => c.id === catId);
+            if (!cat) return '';
+            const saga = cat.sagas.find(s => s.id === sagaId);
+            if (!saga) return '';
+            return saga.titles[this.currentLang] || saga.titles['es-PE'];
+          },
+
+          getHistoryField(sagaKey, fieldName) {
+            const sagaHistory = window.APP_HISTORIES[sagaKey];
+            if (!sagaHistory) return '';
+            const langDict = sagaHistory[this.currentLang] || sagaHistory['es-PE'];
+            return langDict ? langDict[fieldName] : '';
+          },
+
+          getItemTitle(itemId, sagaKey) {
+            const timeline = window.APP_TIMELINES[sagaKey];
+            if (!timeline) return '';
+            const item = timeline.find(i => i.id === itemId);
+            if (!item) return '';
+            return item.titles[this.currentLang] || item.titles['es-PE'];
+          },
+
+          getItemTitleWithYear(itemId, sagaKey, year) {
+            const t = this.getItemTitle(itemId, sagaKey);
+            return `${t} (${year})`;
+          },
+
+          getItemSynopsis(itemId, sagaKey) {
+            const timeline = window.APP_TIMELINES[sagaKey];
+            if (!timeline) return '';
+            const item = timeline.find(i => i.id === itemId);
+            if (!item) return '';
+            return item.synopsis[this.currentLang] || item.synopsis['es-PE'];
+          }
+        }));
+      });
+    </script>
+  </head>
+  <body x-data="appState">
+    <div class="app-root" :class="currentRoute === '#inicio' ? 'is-home-route' : ''">
+      <slot />
+
+      <footer class="main-footer">
+        <p x-text="t('footerText')">CineChronicle © 2026. Todos los derechos reservados.</p>
+      </footer>
+    </div>
+  </body>
+</html>

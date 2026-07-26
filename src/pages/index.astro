@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import SagaTimelineSection from '../components/SagaTimelineSection.astro';
+
+import { marvelHistory, marvelTimeline } from '../data/marvelData';
+import { fastHistory, fastTimeline } from '../data/fastData';
+import { starwarsHistory, starwarsTimeline } from '../data/starwarsData';
+import { conjuringHistory, conjuringTimeline } from '../data/conjuringData';
+import { monstersHistory, monstersTimeline } from '../data/monstersData';
+import { indianaHistory, indianaTimeline } from '../data/indianaData';
+import { insidiousHistory, insidiousTimeline } from '../data/insidiousData';
+import { alienHistory, alienTimeline } from '../data/alienData';
+import { predatorHistory, predatorTimeline } from '../data/predatorData';
+import { terminatorHistory, terminatorTimeline } from '../data/terminatorData';
+import { avpHistory, avpTimeline } from '../data/avpData';
+import { lotrHistory, lotrTimeline } from '../data/lotrData';
+import { potterHistory, potterTimeline } from '../data/potterData';
+import { sawHistory, sawTimeline } from '../data/sawData';
+import { xmenHistory, xmenTimeline } from '../data/xmenData';
+
+const sagas = [
+  { id: 'marvels', prefix: 'marvel', class: 'marvel-section', badge: 'MARVEL', history: marvelHistory, timeline: marvelTimeline },
+  { id: 'rapidos-y-furiosos', prefix: 'fast', class: 'fast-section', badge: 'FAST & FURIOUS', history: fastHistory, timeline: fastTimeline },
+  { id: 'star-wars', prefix: 'starwars', class: 'starwars-section', badge: 'STAR WARS', history: starwarsHistory, timeline: starwarsTimeline },
+  { id: 'el-conjuro', prefix: 'conjuring', class: 'conjuring-section', badge: 'EL CONJURO', history: conjuringHistory, timeline: conjuringTimeline },
+  { id: 'monsters-inc', prefix: 'monsters', class: 'monsters-section', badge: 'MONSTERS', history: monstersHistory, timeline: monstersTimeline },
+  { id: 'indiana-jones', prefix: 'indiana', class: 'indiana-section', badge: 'INDIANA JONES', history: indianaHistory, timeline: indianaTimeline },
+  { id: 'insidious', prefix: 'insidious', class: 'insidious-section', badge: 'INSIDIOUS', history: insidiousHistory, timeline: insidiousTimeline },
+  { id: 'alien', prefix: 'alien', class: 'alien-section', badge: 'ALIEN', history: alienHistory, timeline: alienTimeline },
+  { id: 'predator', prefix: 'predator', class: 'predator-section', badge: 'PREDATOR', history: predatorHistory, timeline: predatorTimeline },
+  { id: 'terminator', prefix: 'terminator', class: 'terminator-section', badge: 'TERMINATOR', history: terminatorHistory, timeline: terminatorTimeline },
+  { id: 'alien-vs-predator', prefix: 'avp', class: 'avp-section', badge: 'AVP', history: avpHistory, timeline: avpTimeline },
+  { id: 'lotr', prefix: 'lotr', class: 'lotr-section', badge: 'LOTR', history: lotrHistory, timeline: lotrTimeline },
+  { id: 'harry-potter', prefix: 'potter', class: 'potter-section', badge: 'HARRY POTTER', history: potterHistory, timeline: potterTimeline },
+  { id: 'saw', prefix: 'saw', class: 'saw-section', badge: 'SAW', history: sawHistory, timeline: sawTimeline },
+  { id: 'xmen', prefix: 'xmen', class: 'xmen-section', badge: 'X-MEN', history: xmenHistory, timeline: xmenTimeline },
+];
+---
+
+<BaseLayout>
+  <Navbar />
+
+  <main>
+    <!-- Section 0: Hero / Inicio -->
+    <div x-show="currentRoute === '#inicio' || currentRoute === ''">
+      <Hero />
+    </div>
+
+    <!-- Movie Saga Timeline Sections -->
+    {sagas.map((saga) => (
+      <div x-show={`currentRoute === '#${saga.id}'`} style="display: none;">
+        <SagaTimelineSection
+          id={saga.id}
+          prefix={saga.prefix}
+          sectionClass={saga.class}
+          badgeLogo={saga.badge}
+          historyData={saga.history}
+          timelineData={saga.timeline}
+        />
+      </div>
+    ))}
+  </main>
+</BaseLayout>

@@ -1,0 +1,123 @@
+/* Monsters, Inc. Section Styling */
+
+.monsters-section {
+  position: relative;
+  width: 100%;
+  padding: 5rem 1.5rem 4rem 1.5rem;
+  background: radial-gradient(circle at 50% 20%, rgba(0, 196, 214, 0.15) 0%, rgba(7, 10, 18, 0.98) 70%, var(--bg-main) 100%);
+  border-top: 1px solid rgba(0, 196, 214, 0.25);
+}
+
+.monsters-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* Header & Origin Information Card */
+.monsters-header-card {
+  background: rgba(18, 24, 38, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 196, 214, 0.35);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 196, 214, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.monsters-header-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, #00C4D6 0%, #10B981 100%);
+}
+
+.monsters-badge-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.monsters-logo-badge {
+  background: linear-gradient(135deg, #00C4D6 0%, #059669 100%);
+  color: #FFFFFF;
+  font-family: var(--font-body);
+  font-weight: 900;
+  padding: 0.2rem 0.6rem;
+  letter-spacing: 1.5px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  box-shadow: 0 2px 8px rgba(0, 196, 214, 0.4);
+}
+
+.monsters-header-card h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  color: var(--text-main);
+}
+
+.monsters-description {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.monsters-origin-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  background: rgba(7, 10, 18, 0.6);
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-glass);
+}
+
+@media (min-width: 640px) {
+  .monsters-origin-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.monsters-timeline-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 900px) {
+  .monsters-timeline-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Monsters Card Specific Styles */
+.monsters-card:hover {
+  border-color: rgba(0, 196, 214, 0.6);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 18px rgba(0, 196, 214, 0.25);
+}
+
+.monsters-badge {
+  background: linear-gradient(135deg, #00C4D6 0%, #059669 100%);
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(0, 196, 214, 0.5);
+}
+
+.monsters-placeholder {
+  background: linear-gradient(145deg, #0d2836 0%, #07121a 100%);
+}
+
+.monsters-logo-tag {
+  background: #00C4D6;
+  color: #071018;
+  font-weight: 800;
+}

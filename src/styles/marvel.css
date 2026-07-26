@@ -1,0 +1,413 @@
+/* Marvel Section Styling - Compact Single-View Cards */
+
+.marvel-section {
+  position: relative;
+  width: 100%;
+  padding: 5rem 1.5rem 4rem 1.5rem;
+  background: radial-gradient(circle at 50% 20%, rgba(237, 29, 36, 0.15) 0%, rgba(7, 10, 18, 0.98) 70%, var(--bg-main) 100%);
+  border-top: 1px solid rgba(237, 29, 36, 0.2);
+}
+
+.marvel-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* Header & Origin Information Card */
+.marvel-header-card {
+  background: rgba(18, 24, 38, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(237, 29, 36, 0.3);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(237, 29, 36, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.marvel-header-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, #ED1D24 0%, var(--accent-gold) 100%);
+}
+
+.marvel-badge-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.marvel-logo-badge {
+  background: #ED1D24;
+  color: #FFFFFF;
+  font-family: var(--font-body);
+  font-weight: 900;
+  padding: 0.2rem 0.6rem;
+  letter-spacing: 1px;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+}
+
+.marvel-header-card h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  color: var(--text-main);
+}
+
+.marvel-origin-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  background: rgba(7, 10, 18, 0.6);
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-glass);
+}
+
+@media (min-width: 640px) {
+  .marvel-origin-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.origin-item h4 {
+  font-size: 0.8rem;
+  color: var(--accent-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.25rem;
+}
+
+.origin-item p {
+  font-size: 0.9rem;
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+.marvel-description {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* Timeline Controls & Filters */
+.timeline-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.timeline-header h3 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 2.8vw, 2rem);
+  color: var(--text-main);
+}
+
+.timeline-header p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  max-width: 650px;
+}
+
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.4rem;
+}
+
+.filter-btn {
+  padding: 0.45rem 1.1rem;
+  border-radius: var(--radius-pill);
+  background: var(--bg-glass);
+  border: 1px solid var(--border-glass);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-weight: 500;
+  transition: var(--transition-fast);
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: rgba(237, 29, 36, 0.2);
+  border-color: #ED1D24;
+  color: var(--text-main);
+  box-shadow: 0 0 12px rgba(237, 29, 36, 0.3);
+}
+
+/* Movies & Series Grid - 2 Column Layout on Desktop for Compact Cards */
+.marvel-timeline-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 900px) {
+  .marvel-timeline-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Billboard Card Component */
+.billboard-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition-smooth);
+  position: relative;
+  min-height: 220px;
+}
+
+@media (min-width: 540px) {
+  .billboard-card {
+    flex-direction: row;
+    height: 230px;
+  }
+}
+
+.billboard-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(237, 29, 36, 0.5);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 15px rgba(237, 29, 36, 0.2);
+}
+
+.poster-wrapper {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: #070a12;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 540px) {
+  .poster-wrapper {
+    width: 160px;
+    height: 100%;
+    max-height: none;
+  }
+}
+
+.poster-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  background: #070a12;
+  z-index: 2;
+  transition: transform 0.4s ease, opacity 0.3s ease;
+  display: block;
+}
+
+.poster-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+  text-align: center;
+  gap: 0.5rem;
+  background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+  z-index: 1;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.placeholder-logo {
+  background: #ED1D24;
+  color: #FFFFFF;
+  font-family: var(--font-body);
+  font-weight: 900;
+  font-size: 0.7rem;
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+  letter-spacing: 1px;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.placeholder-title {
+  color: var(--text-main);
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.billboard-card:hover .poster-img {
+  transform: scale(1.05);
+}
+
+/* Order Number Badge at Title Level (Top Right of Content) */
+.order-number-badge {
+  position: static;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, rgba(245, 197, 24, 0.95) 0%, rgba(217, 119, 6, 0.95) 100%);
+  color: #070a12;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 900;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+}
+
+.order-hashtag {
+  font-size: 0.65rem;
+  opacity: 0.85;
+}
+
+/* Card Content Details */
+.billboard-content {
+  padding: 0.85rem 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  flex: 1;
+  min-width: 0; /* Flexbox overflow protection */
+  overflow: hidden;
+  justify-content: space-between;
+}
+
+.billboard-header-line {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+  min-width: 0;
+  width: 100%;
+}
+
+.billboard-title-text {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.25;
+  min-width: 0;
+  word-break: break-word;
+}
+
+/* Meta Row with Duration and Type Tag */
+.billboard-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  min-width: 0;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--accent-gold);
+  min-width: 0;
+}
+
+.meta-item i {
+  color: var(--accent-gold);
+  font-size: 0.78rem;
+}
+
+.type-tag {
+  padding: 0.15rem 0.55rem;
+  background: rgba(7, 10, 18, 0.9);
+  border: 1px solid rgba(245, 197, 24, 0.3);
+  border-radius: var(--radius-pill);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--text-main);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+.billboard-ambientacion {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  min-width: 0;
+}
+
+.billboard-ambientacion i {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.75rem;
+}
+
+.billboard-cast {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.35;
+  background: rgba(7, 10, 18, 0.4);
+  padding: 0.4rem 0.6rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  max-width: 100%; /* Restricts nowrap text from expanding flex child */
+}
+
+.billboard-cast strong {
+  color: var(--text-main);
+}
+
+.billboard-synopsis {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

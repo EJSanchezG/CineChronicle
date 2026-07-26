@@ -1,0 +1,158 @@
+---
+export interface Props {
+  id: string;
+  prefix: string;
+  sectionClass: string;
+  badgeLogo?: string;
+  historyData: Record<string, any>;
+  timelineData: Array<any>;
+}
+
+const { id, prefix, sectionClass, badgeLogo, historyData, timelineData } = Astro.props;
+---
+
+<section id={id} class={`${sectionClass} ${prefix}-section`}>
+  <div class={`${prefix}-container section-container animate-fade-in`} x-data="{ activeFilter: 'all' }">
+    
+    <div class={`${prefix}-header-card section-header-card`}>
+      <div class={`${prefix}-badge-title section-badge-title`}>
+        {badgeLogo && <span class={`${prefix}-logo-badge logo-badge`}>{badgeLogo}</span>}
+        <h2 x-text={`getHistoryField('${id}', 'title')`}>{historyData['es-PE']?.title}</h2>
+      </div>
+
+      <p class={`${prefix}-description section-description`} x-text={`getHistoryField('${id}', 'description')`}>
+        {historyData['es-PE']?.description}
+      </p>
+
+      <div class={`${prefix}-origin-grid section-origin-grid`}>
+        <div class="origin-item">
+          <h4 x-text={`getHistoryField('${id}', 'creatorTitle')`}>{historyData['es-PE']?.creatorTitle}</h4>
+          <p x-text={`getHistoryField('${id}', 'creators')`}>{historyData['es-PE']?.creators}</p>
+        </div>
+        <div class="origin-item">
+          <h4>Origen & Cronología</h4>
+          <p x-text={`getHistoryField('${id}', 'originYear')`}>{historyData['es-PE']?.originYear}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline Header & Filters -->
+    <div class="timeline-header">
+      <h3 x-text={`getHistoryField('${id}', 'timelineIntro')`}>{historyData['es-PE']?.timelineIntro}</h3>
+      <p x-text={`getHistoryField('${id}', 'timelineSubtitle')`}>{historyData['es-PE']?.timelineSubtitle}</p>
+
+      <div class="filter-buttons">
+        <button 
+          type="button"
+          class="filter-btn"
+          :class="activeFilter === 'all' ? 'active' : ''"
+          @click="activeFilter = 'all'"
+          x-text={`getHistoryField('${id}', 'filterAll')`}
+        >
+          {historyData['es-PE']?.filterAll || 'Todas'}
+        </button>
+
+        {historyData['es-PE']?.filterMovies && (
+          <button 
+            type="button"
+            class="filter-btn"
+            :class="activeFilter === 'movie' ? 'active' : ''"
+            @click="activeFilter = 'movie'"
+            x-text={`getHistoryField('${id}', 'filterMovies')`}
+          >
+            {historyData['es-PE']?.filterMovies}
+          </button>
+        )}
+
+        {historyData['es-PE']?.filterSeries && (
+          <button 
+            type="button"
+            class="filter-btn"
+            :class="activeFilter === 'series' ? 'active' : ''"
+            @click="activeFilter = 'series'"
+            x-text={`getHistoryField('${id}', 'filterSeries')`}
+          >
+            {historyData['es-PE']?.filterSeries}
+          </button>
+        )}
+
+        {historyData['es-PE']?.filterOneShots && (
+          <button 
+            type="button"
+            class="filter-btn"
+            :class="activeFilter === 'oneshot' ? 'active' : ''"
+            @click="activeFilter = 'oneshot'"
+            x-text={`getHistoryField('${id}', 'filterOneShots')`}
+          >
+            {historyData['es-PE']?.filterOneShots}
+          </button>
+        )}
+      </div>
+    </div>
+
+    <!-- Timeline Grid -->
+    <div class={`${prefix}-timeline-grid timeline-grid`}>
+      {timelineData.map((item) => (
+        <article 
+          class="billboard-card"
+          x-show={`activeFilter === 'all' || activeFilter === '${item.type}'`}
+        >
+          <div class="poster-wrapper">
+            <img 
+              loading="lazy" 
+              decoding="async" 
+              src={item.poster} 
+              alt={item.titles['es-PE']}
+              width="300"
+              height="450" 
+              class="poster-img"
+            />
+            <div class="poster-placeholder">
+              <span class="placeholder-logo">{badgeLogo || 'CINE'}</span>
+              <span class="placeholder-title" x-text={`getItemTitle('${item.id}', '${id}')`}>{item.titles['es-PE']}</span>
+            </div>
+          </div>
+
+          <div class="billboard-content">
+            <div class="billboard-header-line">
+              <h4 class="billboard-title-text" x-text={`getItemTitleWithYear('${item.id}', '${id}', '${item.releaseYear}')`}>
+                {item.titles['es-PE']} ({item.releaseYear})
+              </h4>
+              <div class="order-number-badge">
+                <span class="order-hashtag">#</span>{item.stepOrder}
+              </div>
+            </div>
+
+            <div class="billboard-meta-row">
+              <span class="meta-item duration-item">
+                <i class="fa-solid fa-clock"></i>
+                <span>
+                  <strong>{item.type === 'series' ? 'Capítulos:' : 'Duración:'}</strong> {item.durationDisplay}
+                </span>
+              </span>
+              <span class="type-tag">
+                {item.type === 'series' ? 'Serie' : item.type === 'oneshot' ? 'One-Shot' : 'Película'}
+              </span>
+            </div>
+
+            <div class="billboard-ambientacion">
+              <i class="fa-solid fa-hourglass-half"></i>
+              <span>
+                <strong x-text={`getHistoryField('${id}', 'chronologicalYearLabel')`}>{historyData['es-PE']?.chronologicalYearLabel || 'Ambientación:'}</strong> {item.chronoYear}
+              </span>
+            </div>
+
+            <div class="billboard-cast">
+              <strong x-text={`getHistoryField('${id}', 'castLabel')`}>{historyData['es-PE']?.castLabel || 'Reparto:'}</strong> {item.cast}
+            </div>
+
+            <p class="billboard-synopsis" x-text={`getItemSynopsis('${item.id}', '${id}')`}>
+              {item.synopsis['es-PE']}
+            </p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+  </div>
+</section>

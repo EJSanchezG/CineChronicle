@@ -1,0 +1,57 @@
+---
+import '../styles/hero.css';
+---
+
+<section id="inicio" class="hero-section">
+  <div class="hero-container animate-fade-in">
+    <div class="hero-badge">
+      <i class="fa-solid fa-clapperboard"></i>
+      <span x-text="t('badge')">Línea de Tiempo Cinematográfica</span>
+    </div>
+
+    <h1 class="hero-title">
+      <span x-text="t('heroTitlePrefix')">Explora el Orden Cronológico del </span>
+      <span class="gradient-text" x-text="t('heroTitleHighlight')">Cine Mundial</span>
+    </h1>
+
+    <p class="hero-subtitle" x-text="t('heroSubtitle')">
+      Descubre la cronología oficial y perfecta de tus sagas favoritas. Entiende cada evento, conexión y detalle que une las películas más aclamadas de la historia.
+    </p>
+
+    
+    <div class="hero-disclaimer-box">
+      <div class="disclaimer-header">
+        <i class="fa-solid fa-circle-info"></i>
+        <span x-text="t('disclaimerBadge')">Nota Informativa</span>
+      </div>
+      <p class="disclaimer-text" x-text="t('disclaimerText')">
+        Esta plataforma no reproduce ni transmite contenido en línea. Es una guía cronológica interactiva diseñada para ayudarte a conocer el orden exacto en el que debes ver tus películas y series favoritas.
+      </p>
+    </div>
+
+    <div class="hero-features-grid">
+      <div 
+        class="feature-card interactive-card"
+        @click="if (window.innerWidth < 1230) isDrawerOpen = true"
+        role="button"
+        tabIndex="0"
+      >
+        <i class="fa-solid fa-clock-rotate-left"></i>
+        <h3 x-text="t('feature1Title')">Orden Cronológico</h3>
+        <p x-text="t('feature1Desc')">Navega en la secuencia temporal exacta de la historia sin perderte.</p>
+      </div>
+
+      <div class="feature-card">
+        <i class="fa-solid fa-layer-group"></i>
+        <h3 x-text="t('feature2Title')">Detalles y Sagas</h3>
+        <p x-text="t('feature2Desc')">Explora datos clave, años de estreno y conexiones entre entregas.</p>
+      </div>
+
+      <div class="feature-card">
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+        <h3 x-text="t('feature3Title')">Experiencia Fluida</h3>
+        <p x-text="t('feature3Desc')">Una interfaz rápida, moderna y optimizada para cualquier pantalla.</p>
+      </div>
+    </div>
+  </div>
+</section>
