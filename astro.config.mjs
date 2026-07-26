@@ -5,6 +5,9 @@ export default defineConfig({
   output: 'static',
   site: 'https://ejsanchezg.github.io',
   base: '/CineChronicle/',
+  build: {
+    assets: 'assets'
+  },
   devToolbar: {
     enabled: false
   }

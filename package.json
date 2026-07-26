@@ -9,7 +9,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist -t"
   },
   "dependencies": {
     "astro": "7.1.3"
