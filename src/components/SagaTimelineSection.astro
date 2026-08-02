@@ -9,6 +9,7 @@ export interface Props {
 }
 
 const { id, prefix, sectionClass, badgeLogo, historyData, timelineData } = Astro.props;
+const base = import.meta.env.BASE_URL;
 ---
 
 <section id={id} class={`${sectionClass} ${prefix}-section`}>
@@ -101,7 +102,7 @@ const { id, prefix, sectionClass, badgeLogo, historyData, timelineData } = Astro
             <img 
               loading="lazy" 
               decoding="async" 
-              src={item.poster} 
+              src={`${base}${item.poster}`}
               alt={item.titles['es-PE']}
               width="300"
               height="450" 
